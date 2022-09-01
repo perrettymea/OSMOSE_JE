@@ -87,7 +87,8 @@ precision | 0.44
 recall | 0.20 
 Fscore | 27.3%* 
 
-*(much better than the previous score that was 0.8%). That is still lower than the DCASE baseline score but it is not the same data. Recall is lower than precision, it shows that the network makes a lot of FN. I didn't touch the threshold in evaluation step (it is still 0.45) and the number of negative samples (50). We can use a lower threshold but it can augment FP.  It makes also a lot of FP. It MAY be because of glider noise or environmental noises. In this case it may interesting to add another class called "noise" or "background" as you want, in order to show to the network that is not something to detect. If it is already made (a detector of this speficic kind of noise, rotor or motor noise) it is fast to add to the annotation file (.csv). We can also use a higher number of negative samples (the best parameters can be optimally chosen with the optimization describe above).
+*(much better than the previous score that was 0.8%). That is still lower than the DCASE baseline score but it is not the same data. Recall is lower than precision, it shows that the network makes a lot of FN. I didn't touch the threshold in evaluation step (it is still 0.45) and the number of negative samples (50). We can use a lower threshold but it can augment FP.  It makes also a lot of FP. It MAY be because of glider noise or environmental noises. In this case it may interesting to add another class called "noise" or "background" as you want, in order to show to the network that is not something to detect. If it is already made (a detector of this speficic kind of noise, rotor or motor noise) it is fast to add to the annotation file (.csv). We can also use a higher number of negative samples (the best parameters can be optimally chosen with the optimization describe below).
+
 ### Important points:
 
 
@@ -107,8 +108,8 @@ Run the following command for post processing on a .csv file:
 python post_proc_new.py -val_path=./Development_Set/Validation_Set/ -evaluation_file=eval_output.csv -new_evaluation_file=new_eval_output.csv
 ```
 
-## Optimisation des hyperparametres : proposition de protocole : 
-Le modele de la baseline de la tache 5 comporte 23 hyperparametres qu'il peut etre pertinent d'optimiser. Etant donne ce nombre important d'hyperparametres il n'est pas question de tester toutes les configurations possibles (grid search). Une proposition serait d'utiliser une methode de recherche aleatoire ou bayesienne si la dimension intrinseque du probleme d'optimisation est faible. Dans ce cas la, une recherche aleatoire sera plus pertinente que la recherche sur grille <a href="https://jmlr.csail.mit.edu/papers/volume13/bergstra12a/bergstra12a.pdf">Berstra el. al</a>. Un outil interessant pour effectuer ce type d'optimisation est wandb.ai. Il faudra alors logger les metriques d'evaluation sur un script de ce type : <a href="https://docs.wandb.ai/guides/sweeps">script</a>.
+## Optimisation of hyperparameters: proposed protocol :
+The baseline model of Task 5 has 23 hyperparameters that may be relevant to optimize. Given this large number of hyperparameters it is not possible to test all possible configurations (grid search). A proposal would be to use a random search method or Bayesian search if the intrinsic dimension of the optimization problem is low.  In this case, a random search will be more relevant than a grid search <a href="https://jmlr.csail.mit.edu/papers/volume13/bergstra12a/bergstra12a.pdf">Berstra el. al</a>. An interesting tool to perform this type of optimization is wandb.ai. You will have to log the evaluation metrics on a script of this type : <a href="https://docs.wandb.ai/guides/sweeps">script</a>.
 
 ## Config parameters
 
