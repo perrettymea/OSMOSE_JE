@@ -87,7 +87,7 @@ precision | 0.44
 recall | 0.20 
 Fscore | 27.3%* 
 
-*(much better than the previous score that was 0.8%). That is still lower than the DCASE baseline score but it is not the same data. Recall is lower than precision, it shows that the network makes a lot of FN. I didn't touch the threshold in evaluation step (it is still 0.45). We can use a lower threshold but it can augment FP. It makes also a lot of FP. It MAY be because of glider noise or environmental noises. In this case it may interesting to add another class called "noise" or "background" as you want, in order to show to the network that is not something to detect. If it is already made (a detector of this speficic kind of noise, rotor or motor noise) it is fast to add to the annotation file (.csv).
+*(much better than the previous score that was 0.8%). That is still lower than the DCASE baseline score but it is not the same data. Recall is lower than precision, it shows that the network makes a lot of FN. I didn't touch the threshold in evaluation step (it is still 0.45) and the number of negative samples (50). We can use a lower threshold but it can augment FP.  It makes also a lot of FP. It MAY be because of glider noise or environmental noises. In this case it may interesting to add another class called "noise" or "background" as you want, in order to show to the network that is not something to detect. If it is already made (a detector of this speficic kind of noise, rotor or motor noise) it is fast to add to the annotation file (.csv). We can also use a higher number of negative samples (the best parameters can be optimally chosen with the optimization describe above).
 ### Important points:
 
 
