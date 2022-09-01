@@ -1,20 +1,22 @@
-# RENDU OSMOSE FINAL 
+# FINAL OSMOSE REPORT
 
-Ces fichiers sont fournis par Junior Impact dans le cadre de l'étude OSMOSE 2022.
-Attention, dû à des facteurs expliqués dans le rapport final de l'étude, les codes de la tâche 4 2021 ne sont pas utilisables. Ils sont fournis à titre indicatifs.
+These files are provided by Junior Impact as part of the OSMOSE 2022 study.
+Please note that due to factors explained in the final report of the study, the codes for task 4 2021 are not usable. They are provided as an indication.
 
-## Organisation des dossiers : 
+## Organisation of files : 
 
 ## Task 4 : 2021
 
 Baseline fichiers python : /home/perretty/Task4/DESED_task/recipes/dcase2021_task4_baseline/  
 Baseline config : /home/perretty/Task4/DESED_task/recipes/dcase2021_task4_baseline/confs/  
 Nam fichiers python : /home/perretty/Task4/FilterAugSED/  
-Données DCASE 2021 task 4 (incomplète car permissions sur les vidéos youtube en privé/suppr): /home/perretty/Task4/data/  
-Base de données GLIDER task4 : /home/perretty/Task4/DATASET/  
+Data DCASE 2021 task 4 (incomplete because permissions on youtube videos in private/delete)  
 
-## Task5 : 2022
+## Task5 : 2022 (same as 2021)
 Baseline fichiers python : /home/perretty/Task5/dcase-few-shot-bioacoustic/baselines/deep_learning/  
 Baseline config : /home/perretty/Task5/dcase-few-shot-bioacoustic/baselines/deep_learning/config.yaml  
-Base de données DCASE : /home/perretty/Task5/dcase-few-shot-bioacoustic/Development_Set  
-Base de données GLIDER task5 : /home/perretty/Task5/dcase-few-shot-bioacoustic/Development_Set_Glider  
+Data base GLIDER task5 : /home/perretty/Task5/dcase-few-shot-bioacoustic/Development_Set_Glider (and _v2)
+
+## Data Formatting
+
+
