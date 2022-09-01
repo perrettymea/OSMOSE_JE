@@ -1,3 +1,4 @@
+This readme contains general information about how the network works and what commands to run on curry. The base of this READme is the READme of the DCASE task baseline. We just added some informations.
 # Prototypical_Network
 
 This is the deep learning baseline code for DCASE task 5. Prototypical networks were introduced by <a href="https://arxiv.org/abs/1703.05175">Snell et. al in 2017</a>. The core idea of the methodology is to learn an emebedding space where points cluster around a single prototype representation of each class. A non-linear mapping from the input space to embedding space is learnt using a convolutional neural network. Class prototype is calculated by taking a mean of its support set in the embedding space. Classification of a query point is conducted by finding the nearest class prototype.
@@ -49,8 +50,13 @@ Run the following command
 
 ```
 python main.py set.train=true
+
 ```
+or on curry (ENSTA Bretagne) (for example)
+```
+
 run slurm cmd="module load anaconda; conda activate dcasetask5; python /home/perretty/Task5/dcase-few-shot-bioacoustic/baselines/deep_learning/main.py" cpus=16 gpus=2
+```
 
 ### Evaluation:
 
@@ -60,15 +66,28 @@ For evaluation, either place the evaluation_metric code in the same folder as th
 python main.py set.eval=true 
 
 ```
-Attention pour la commande precedente a ne pas la lancer deux fois en parallele. Arret du traitement possible.
+Be careful not to run the previous command twice in parallel. Possible stop of the treatment (if you don't use a Curry job).
+You can post process the detections made by the algorithm with the follow line. (It cuts very little portion of sound or overlapping sound detected.
 ```
 
 python post_proc.py -val_path=/home/perretty/Task5/dcase-few-shot-bioacoustic/Development_Set_Glider/Validation_Set/ -evaluation_file=/home/perretty/Task5/dcase-few-shot-bioacoustic/baselines/deep_learning/Root/Eval_out.csv -new_evaluation_file=/home/perretty/Task5/dcase-few-shot-bioacoustic/baselines/deep_learning/Root/new_eval_out.csv
+```
+For the evaluation of detections made :  TP, TN, FN, FP are computed and precision, recall F1score also. You can add some others metrics if needed (For example, MCC Matthew Correlation Coefficient if it is a very unballanced dataset, sensivity or accuracy. I didn't have the time to make an analysis of this metrics in function of the class of interest (the class that was not seen during the training and that is only in the validation set).
 
+```
 python /home/perretty/Task5/dcase-few-shot-bioacoustic/evaluation_metrics/evaluation.py -pred_file=/home/perretty/Task5/dcase-few-shot-bioacoustic/baselines/deep_learning/Root/new_eval_out.csv -ref_files_path=/home/perretty/Task5/dcase-few-shot-bioacoustic/Development_Set_Glider/Validation_Set/Validation_Set_fit/ -team_name=TESTteam -dataset=VAL -savepath=./
- 
+ ```
 
+### Final results 
+The results in the report were really bad, we continued to work on this task after and we succeded to make better scores. We changed some hyperparameters like f_min f_max (fmax was too high), k_way (from 4 to 3) and we add much more datafiles than in the DCASE baseline. The final results were obtained with the Glider_development_v2 dataset and the configuration that can be found in config.yaml : 
 
+| Metrics | Scores |
+| ---- | ----- |
+precision | 0.44 
+recall | 0.20 
+Fscore | 27.3%* 
+
+*(much better than the previous score that was 0.8%). That is still lower than the DCASE baseline score but it is not the same data. Recall is lower than precision, it shows that the network makes a lot of FN. I didn't touch the threshold in evaluation step (it is still 0.45). We can use a lower threshold but it can augment FP. It makes also a lot of FP. It MAY be because of glider noise or environmental noises. In this case it may interesting to add another class called "noise" or "background" as you want, in order to show to the network that is not something to detect. If it is already made (a detector of this speficic kind of noise, rotor or motor noise) it is fast to add to the annotation file (.csv).
 ### Important points:
 
 
