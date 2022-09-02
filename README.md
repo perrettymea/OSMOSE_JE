@@ -19,4 +19,9 @@ Data base GLIDER task5 : /home/perretty/Task5/dcase-few-shot-bioacoustic/Develop
 
 ## Data Formatting
 
+Formatting of datasets from client data is available via the [Formatage.py](https://github.com/perrettymea/OSMOSE_JE/blob/main/Formatage_dataset.py) file. It is possible to create weak datasets (for task 4) or strong datasets with the appropriate annotations for task 5. It is possible, in particular for task 5 (few shot) to choose the number of labels in the training set and in the validation set, to choose the class which will not be present in the training set and which will constitute the validation set (non-overlapping of classes in a few-shot framework) (cf dataset2task5 function). It is also possible to create a dataset with an overlap of classes (dataset2task5_with_recouvrement). However, in this case, we leave the few-shot approach.
+
+## Task5
+
+Only the baseline of task 5 is available with interesting results, see [README.md](https://github.com/perrettymea/OSMOSE_JE/blob/main/task5/baselines/deep_learning/README.md) for further details.
 
